@@ -1,4 +1,4 @@
-# k8s-go-blue_green
+# k8s | go | blue_green
 
 ### Structure Project
 ``` shell
