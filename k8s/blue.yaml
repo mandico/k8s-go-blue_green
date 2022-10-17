@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      slot: blue
+      env: production
+      app: go-app
+  template:
+    metadata:
+      labels:
+        slot: blue
+        env: production
+        app: go-app
+    spec:
+      containers:
+      - name: blue
+        image: luizmandico/go-app:1.0.0
+        env:
+          - name: APP_VERSION
+            value: "1.0.0"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+        ports:
+        - name: http
+          containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blue
+spec:
+  selector:
+    slot: blue
+    app: go-app
+  ports:
+  - port: 7777
+    targetPort: 8080
