@@ -57,3 +57,6 @@ docker build . -t go-app:1.0.0 -t go-app:latest
 cd k8s/
 kubectl apply -f .
 ```
+
+
+ while true; do curl http://kubernetes.docker.internal/go-demo/version && sleep 1; done
