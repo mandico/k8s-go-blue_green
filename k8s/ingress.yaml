@@ -2,17 +2,16 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: app-ingress
-  labels:
-    name: app-ingress
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+  - host: "kubernetes.docker.internal"
+    http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: lb
+            name: go-demo-prd
             port: 
-              number: 8080
+              number: 8888

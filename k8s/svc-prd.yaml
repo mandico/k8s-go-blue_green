@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: lb
+  name: go-demo-prd
 spec:
   selector:
-    slot: blue
+    slot: green
+    app: go-app
   ports:
   - port: 8888
     targetPort: 8888

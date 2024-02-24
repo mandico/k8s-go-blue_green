@@ -1,5 +1,5 @@
 # stage build
-FROM golang:1.19 as build
+FROM golang:latest as build
 
 WORKDIR /build
 
@@ -7,10 +7,10 @@ COPY go.mod ./
 RUN go mod download && go mod verify
 
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o /build/app app.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o /build/app main.go
 
 # stage imagem final
-FROM alpine:3.16
+FROM alpine:latest
 
 WORKDIR /apps
 

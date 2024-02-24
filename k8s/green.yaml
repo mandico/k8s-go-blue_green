@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: green
+  name: go-app-green
 spec:
   replicas: 1
   selector:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: green
-        image: luizmandico/go-app:1.0.0
+        image: luizmandico/blue_green:1.0.0
         env:
           - name: APP_VERSION
             value: "2.0.0"
@@ -28,20 +28,8 @@ spec:
             cpu: "500m"
         readinessProbe:
           httpGet:
-            path: /health
-            port: 8080
+            path: /go-demo/health
+            port: 8888
         ports:
         - name: http
-          containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: green
-spec:
-  selector:
-    slot: green
-    app: go-app
-  ports:
-  - port: 9999
-    targetPort: 8080
+          containerPort: 8888
