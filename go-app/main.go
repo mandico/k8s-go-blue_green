@@ -26,7 +26,7 @@ func Info(w http.ResponseWriter, r *http.Request) {
 		os.Exit(1)
 	}
 
-	var output = " | " + getEnv() + " | " + hostname + " | " + currentTime.Format("2006.01.02 15:04:05.000000") + " | "
+	var output = " | " + getEnv() + " | " + currentTime.Format("2006.01.02 15:04:05.000000") + " | " + hostname + " | "
 	io.WriteString(w, output)
 	log.Info(output)
 }

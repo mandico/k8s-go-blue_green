@@ -12,6 +12,6 @@ spec:
         path: "/"
         backend:
           service:
-            name: go-demo-prd
+            name: go-demo
             port: 
               number: 8888

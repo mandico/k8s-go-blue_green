@@ -6,19 +6,17 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      slot: green
-      env: production
+      slot: stage
       app: go-app
   template:
     metadata:
       labels:
-        slot: green
-        env: production
+        slot: stage
         app: go-app
     spec:
       containers:
       - name: green
-        image: luizmandico/blue_green:1.0.0
+        image: luizmandico/blue_green:latest
         env:
           - name: APP_VERSION
             value: "2.0.0"

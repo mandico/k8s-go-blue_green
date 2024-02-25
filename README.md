@@ -60,3 +60,6 @@ kubectl apply -f .
 
 
  while true; do curl http://kubernetes.docker.internal/go-demo/version && sleep 1; done
+
+ kubectl patch service go-demo-prd --patch 'spec:\n selector:\n  slot: blue'
+ kubectl patch service go-demo-prd --patch  '{    "spec": {        "selector": {            "slot": "blue"        }}}'
